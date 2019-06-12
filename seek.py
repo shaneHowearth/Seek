@@ -16,6 +16,8 @@ salaryValues = ["0", "30000", "40000", "50000", "60000", "70000", "80000", "1000
 SALMIN = salaryValues[8]
 SALMAX = salaryValues[-1]
 
+locations = ["All-Australia-AU", "All-New-Zealand", "London-UK", "All-Auckland", "All-Waikato", "All-Wellington", "All-Canterbury", "Western-Australia-WA-AU"]
+LOCATION = locations[0]
 
 # Clear the terminal
 def clear(): 
@@ -27,7 +29,7 @@ def clear():
         _ = system('clear')
 
 # Page to be scraped
-link = "https://www.seek.co.nz/"+COMPLANG+"-jobs/in-All-Australia-AU?salaryrange="+SALMIN+"-"+SALMAX+"&salarytype=annual&sortmode=ListedDate"
+link = "https://www.seek.co.nz/"+COMPLANG+"-jobs/in-"+LOCATION+"?salaryrange="+SALMIN+"-"+SALMAX+"&salarytype=annual&sortmode=ListedDate"
 
 def scrapeSeek():
     # Get page data from server, block redirects
