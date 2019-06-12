@@ -9,7 +9,7 @@ from os import system, name
 MAXRESULTS = 3
 WAIT = 300 # In seconds
 # Programming language you are searching for (eg. java, python, golang)
-COMPLANG = "golang"
+SEARCH = "golang"
 
 # Seek have set values that can be searched on for the salary amount
 salaryValues = ["0", "30000", "40000", "50000", "60000", "70000", "80000", "100000", "120000", "150000", "200000", "999999"]
@@ -29,7 +29,7 @@ def clear():
         _ = system('clear')
 
 # Page to be scraped
-link = "https://www.seek.co.nz/"+COMPLANG+"-jobs/in-"+LOCATION+"?salaryrange="+SALMIN+"-"+SALMAX+"&salarytype=annual&sortmode=ListedDate"
+link = "https://www.seek.co.nz/"+SEARCH+"-jobs/in-"+LOCATION+"?salaryrange="+SALMIN+"-"+SALMAX+"&salarytype=annual&sortmode=ListedDate"
 
 def scrapeSeek():
     # Get page data from server, block redirects
