@@ -12,4 +12,4 @@ For now you will need to hand edit the following variables in order to get the r
 
 Run the application with `./seek.py`
 
-![Screenshot](Selection_009.bmp)
+![Screenshot](Selection_009.png)
