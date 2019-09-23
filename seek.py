@@ -47,7 +47,7 @@ def scrapeSeek():
             except IndexError:
                 advertiser = advert.xpath('article/span[5]/span/span[2]/text()')[0]
 
-            print("http://www.seek.co.nz"+advert.xpath('article/span[2]/span/h1/a')[0].get("href"))
+            print("http://www.seek.co.nz"+advert.xpath('article/span[2]/span/h1/a')[0].get("href").split("?")[0])
             print(advert.xpath('article/span[2]/span/h1/a/text()')[0], " : ",advertiser)
 
             # Blurb
