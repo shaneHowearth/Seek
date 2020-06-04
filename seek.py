@@ -3,10 +3,10 @@
 import time
 from lxml import html
 import requests
-from os import system, name 
+from os import system, name
 
 # Settings
-MAXRESULTS = 3
+MAXRESULTS = 5
 WAIT = 300 # In seconds
 # Programming language you are searching for (eg. java, python, golang)
 SEARCH = "golang"
@@ -20,11 +20,11 @@ locations = ["All-Australia-AU", "All-New-Zealand", "London-UK", "All-Auckland",
 LOCATION = locations[0]
 
 # Clear the terminal
-def clear(): 
-    # for windows 
+def clear():
+    # for windows
     if name == 'nt':
         _ = system('cls')
-    # for mac and linux(here, os.name is 'posix') 
+    # for mac and linux(here, os.name is 'posix')
     else:
         _ = system('clear')
 
@@ -38,9 +38,15 @@ def scrapeSeek():
     dom = html.fromstring(response.content)
 
     # loop over results
-    for advertList in dom.xpath('//*[@data-automation="searchResults"]/div/div[2]'):
+    for advertList in dom[1].xpath('//*[@data-automation="searchResults"]/div/div'):
         print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
-        for advert in advertList.xpath('div')[:MAXRESULTS]:
+        count = 0
+        for advert in advertList.xpath('div'):
+            count +=1
+            if count == 1:
+                continue
+            if count > MAXRESULTS:
+                break
             # Headline and advertiser
             try:
                 advertiser = advert.xpath('article/span[5]/span/a/text()')[0]
