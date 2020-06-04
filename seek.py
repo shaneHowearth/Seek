@@ -8,7 +8,7 @@ from os import system, name
 import cursor
 
 # Settings
-MAXRESULTS = 10
+MAXRESULTS = 3
 WAIT = 300 # In seconds
 # Programming language you are searching for (eg. java, python, golang)
 SEARCH = "golang"
@@ -38,16 +38,18 @@ def scrapeSeek():
     response = requests.get(link)
 
     dom = html.fromstring(response.content)
-    print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+    print("Last fetch:", time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
 
     # loop over results
     for advertList in dom[1].xpath('//*[@data-automation="searchResults"]/div/div'):
         count = 0
         for advert in advertList.xpath('div'):
             count +=1
+            # Skip the WFH banner
             if count == 1:
                 continue
-            if count >= MAXRESULTS:
+            # Show this many results (adjust for the ad skip)
+            if count > MAXRESULTS+1:
                 return
             # Headline and advertiser
             try:
@@ -81,18 +83,37 @@ def scrapeSeek():
 
 # Pretty
 bar = [
-    " [=     ]",
-    " [ =    ]",
-    " [  =   ]",
-    " [   =  ]",
-    " [    = ]",
-    " [     =]",
-    " [    = ]",
-    " [   =  ]",
-    " [  =   ]",
-    " [ =    ]",
+    " [=               ]",
+    " [ =              ]",
+    " [  =             ]",
+    " [   =            ]",
+    " [    =           ]",
+    " [     =          ]",
+    " [      =         ]",
+    " [       =        ]",
+    " [        =       ]",
+    " [         =      ]",
+    " [          =     ]",
+    " [           =    ]",
+    " [            =   ]",
+    " [             =  ]",
+    " [              = ]",
+    " [               =]",
+    " [              = ]",
+    " [             =  ]",
+    " [            =   ]",
+    " [           =    ]",
+    " [          =     ]",
+    " [         =      ]",
+    " [        =       ]",
+    " [       =        ]",
+    " [      =         ]",
+    " [     =          ]",
+    " [    =           ]",
+    " [   =            ]",
+    " [  =             ]",
+    " [ =              ]",
 ]
-i = 0
 
 # Infinite loop
 while True:

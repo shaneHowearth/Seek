@@ -2,9 +2,9 @@
 Simple script to watch job listings on seek.co.nz
 
 # Installation
-lxml and cursor are required to be installed
-`python3 -m pip install lxml`
-`python3 -m pip install cursor`
+requests, lxml, and cursor are required to be installed
+
+    python3 -m pip install requests lxml cursor
 
 # Usage
 For now you will need to hand edit the following variables in order to get the results you want:
